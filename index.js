@@ -87,13 +87,13 @@ function addRole() {
     inquirer.prompt([
         {
             type: "input",
-            name: "role",
-            message: "what is the role?"
+            name: "role_id",
+            message: "what is the role id?"
         },
         {
             type: "input",
-            name: "name",
-            message: "what is the employee's name?"
+            name: "title",
+            message: "what is the role title?"
         },
         {
             type: "input",
@@ -102,13 +102,13 @@ function addRole() {
         },
         {
             type: "input",
-            name: "dept_namet",
+            name: "department_id",
             message: "what is the department?"
         }
     ])
     .then(answers => {
 
-        db.query("INSERT INTO role (id, name) VALUES (?, ?);", [answers.role, answers.name, answers.salary, answers.dept_name], (err, data) => {
+        db.query("INSERT INTO role (id, title, salary, department_id) VALUES (?, ?);", [answers.role_id, answers.title, answers.salary, answers.dept_id], (err, data) => {
             if (err) console.log(err);
 
             console.log("Role added!")
@@ -127,6 +127,8 @@ function addEmployee() {
     ])
 
 }
+
+//works
 
 function addDepartment() {
     inquirer.prompt([
