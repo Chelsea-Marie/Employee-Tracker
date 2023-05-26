@@ -92,23 +92,23 @@ function addRole() {
         },
         {
             type: "input",
-            name: "title",
+            name: "role_title",
             message: "what is the role title?"
         },
         {
             type: "input",
-            name: "salary",
+            name: "role_salary",
             message: "what is the salary?"
         },
         {
             type: "input",
-            name: "department_id",
+            name: "dept_id",
             message: "what is the department?"
         }
     ])
     .then(answers => {
 
-        db.query("INSERT INTO role (id, title, salary, department_id) VALUES (?, ?);", [answers.role_id, answers.title, answers.salary, answers.dept_id], (err, data) => {
+        db.query("INSERT INTO role (role_id, role_title, role_salary, dept_id) VALUES (?, ?);", [answers.role_id, answers.title, answers.salary, answers.dept_id], (err, data) => {
             if (err) console.log(err);
 
             console.log("Role added!")
