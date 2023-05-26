@@ -108,7 +108,7 @@ function addRole() {
     ])
     .then(answers => {
 
-        db.query("INSERT INTO role (role_id, role_title, role_salary, dept_id) VALUES (?, ?);", [answers.role_id, answers.title, answers.salary, answers.dept_id], (err, data) => {
+        db.query("INSERT INTO role (id, title, salary, department_id) VALUES (?, ?, ?, ?);", [answers.role_id, answers.title, answers.salary, answers.dept_id], (err, data) => {
             if (err) console.log(err);
 
             console.log("Role added!")
@@ -122,9 +122,40 @@ function addEmployee() {
     inquirer.prompt([
         {
             type: "input",
-            
+            name: "emp_id",
+            message: "what is the employee's id?"
+        },
+        {
+            type: "input",
+            name: "first",
+            message: "what is the employee's first name?"
+        },
+        {
+            type: "input",
+            name: "last",
+            message: "what is the employee's last name?"
+        },
+        {
+            type: "input",
+            name: "role_id",
+            message: "what is the employee's role id?"
+        },
+        {
+            type: "input",
+            name: "manager",
+            message: "who is the employee's manager?"
         }
     ])
+
+    .then(answers => {
+
+        db.query("INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?, ?);", [answers.employee_id, answers.first_name, answers.last_name, answers.role_id, answers.manager_id], (err, data) => {
+            if (err) console.log(err);
+
+            console.log("Employee added!")
+            mainMenu();
+        })
+    }) 
 
 }
 
